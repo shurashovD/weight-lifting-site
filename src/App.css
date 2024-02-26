@@ -1,0 +1,100 @@
+:root {
+  --color-text-primary: #222222;
+  --color-text-secondary: #757575;
+  --color-text-placeholder: #aaaaaa;
+  --color-text-success: #4fae33;
+  --color-text-warning: #ff7f00;
+  --color-text-danger: #ed2d2d;
+  --color-text-invert: #ffffff;
+  --color-text-invert-active: #e5e5e5;
+  --color-link-visited: #524db9;
+  --color-link-hint: #757575;
+  --color-link-hover-hint: #333333;
+  --color-link-default: #365ec6;
+  --color-link-default-ondark: #66ccf7;
+  --color-link-hover-ondark: #2b4b9e;
+  --color-accent---dark-violet: #4642a8;
+  --color-accent---violet: #5d58bf;
+  --color-forprimary-primary-default: #001e62;
+  --color-forprimary-primary-hover: #011644;
+  --color-forprimary-invert-default: #ffffff;
+  --color-forprimary-invert-active: #e5e5e5;
+  --color-accent---dark-green: #1d9c00;
+  --color-accent---dark-red: #d00000;
+  --color-counter-blue: #1567ad;
+  --color-counter-red: #ef4058;
+  --color-accent---light-blue: #5c8aff;
+  --color-accent---cyan: #00b0ed;
+  --color-accent---neon-blue: #66ccf7;
+  --color-accent---pink: #f160c3;
+  --color-gray---black: #000000;
+  --color-gray---gray20: #222222;
+  --color-gray---gray30: #333333;
+  --color-gray---gray60: #757575;
+  --color-gray---gray70: #aaaaaa;
+  --color-gray---gray90: #e5e5e5;
+  --color-surface-secondary: white;
+  --color-gray---gray94: #eeeeee;
+  --color-gray---gray96: #f5f5f5;
+  --color-gray---white: #ffffff;
+  --color-gray---dark1: #1f2937;
+  --color-green---g500: #47d16c;
+  --color-input-focus: rgba(54, 94, 198, 0.3);
+  --color-input-danger-focus: rgba(237, 45, 45, 0.3);
+  --color-input-invalid-focus: rgba(255, 127, 0, 0.3);
+  --color-input-success: rgba(79, 174, 51, 0.3);
+  --color-input-read-only: #f5f5f5;
+  --color-select-default: #ffffff;
+  --color-select-hover-element: rgba(117, 117, 117, 0.15);
+  --color-select-active: #d9e3ff;
+  --color-background-default: #ffffff;
+  --color-background-secondary: #f5f5f5;
+  --color-background-tertiary: #eeeeee;
+  --color-background-table-zebra: #f9f9f9;
+  --color-notification-info: linear-gradient(0deg,
+      rgba(92, 137, 255, 0.15),
+      rgba(92, 137, 255, 0.15)),
+    #ffffff;
+  --color-border-service-notification-info: rgba(92, 137, 255, 0.25);
+  --color-notification-success: linear-gradient(0deg,
+      rgba(79, 174, 51, 0.15),
+      rgba(79, 174, 51, 0.15));
+  --color-border-service-notification-success: rgba(79, 174, 51, 0.4);
+  --color-notification-warning: linear-gradient(0deg,
+      rgba(249, 177, 89, 0.15),
+      rgba(249, 177, 89, 0.15));
+  --color-border-service-notification-warning: rgba(249, 177, 89, 0.4);
+  --color-notification-danger: linear-gradient(0deg,
+      rgba(237, 45, 45, 0.1),
+      rgba(237, 45, 45, 0.1));
+  --color-border-service-notification-error: rgba(237, 45, 45, 0.25);
+  --color-notification-gray: #eeeeee;
+  --color-tinted-stone: #a6b0b3;
+  --color-divider-solid: #cccccc;
+  --color-background-hover: #ecf7ff;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  /* ширина scrollbar */
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: none;
+  /* цвет дорожки */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: white;
+  /* цвет плашки */
+  border-radius: 20px;
+  /* закругления плашки */
+  border: 3px solid rgba(0, 0, 0, 0);
+  /* padding вокруг плашки */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e0e0e0;
+  transition: .2s;
+}

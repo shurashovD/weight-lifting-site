@@ -28,7 +28,7 @@ export const AttCell: FC<Props> = observer(({ attempt }) => {
 
   const backgroundColor = useMemo(() => {
     if (attempt.isSucceded) {
-      return '#30C030'
+      return '#30A030'
     }
 
     if (attempt.isWronged) {
@@ -79,14 +79,15 @@ export const AttCell: FC<Props> = observer(({ attempt }) => {
 
   return (
     <StyledTableCell
-      sx={{
+      sx={({ palette }) => ({
         p: 0,
         width: '5%',
         maxWidth: '5%',
         paddingBottom: 0,
         paddingTop: 0,
         backgroundColor,
-      }}
+        background: attempt.isCurrent ? palette.primary.dark : backgroundColor,
+      })}
       className="right-border"
     >
       <input
@@ -99,7 +100,7 @@ export const AttCell: FC<Props> = observer(({ attempt }) => {
         style={{
           backgroundColor: 'transparent',
           border: 0,
-          color: 'white',
+          color: attempt.isCurrent ? '#000030' : 'white',
           height: '100%',
           fontSize: '18px',
           width: '100%',

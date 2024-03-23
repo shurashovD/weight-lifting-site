@@ -110,9 +110,10 @@ export class PartsStore {
   }
 
   private _autorestart() {
+    const mode = this.mode
     new Promise(resolve => setTimeout(resolve, 1500)).then(() => {
       runInAction(() => {
-        if (this.mode === 'IDLE') {
+        if (mode === 'IDLE') {
           this.run()
         }
       })
@@ -122,7 +123,7 @@ export class PartsStore {
   public add = (payload: NoteFormFields) => {
     const number = Math.max(...this._items.map(({ number }) => +number), 0) + 1
     const data = noteFormToPayload(payload)
-    const note = new Note({ ...data, number })
+    const note = new Note({ ...data, number }, this)
     this._items.push(note)
     this._form?.reset()
 
@@ -136,7 +137,7 @@ export class PartsStore {
     runInAction(() => {
       for (const noteDb of data) {
         const payload = noteDbToAddPayload(noteDb)
-        const note = new Note(payload)
+        const note = new Note(payload, this)
         this._items.push(note)
       }
     })
@@ -148,7 +149,7 @@ export class PartsStore {
     this._form?.reset()
   }
 
-  public goodLift(): void {
+  public goodLift = () => {
     const nextAction = this._mode === 'RUN' ? this._autorestart : () => {}
 
     if (this.mode === 'IDLE') {
@@ -157,7 +158,7 @@ export class PartsStore {
 
     this.currentItem?.goodLift()
     this.stop()
-    nextAction()
+    nextAction.call(this)
   }
 
   public editNote = (partId: string | number) => {
@@ -182,7 +183,6 @@ export class PartsStore {
     this._mode = 'MANUAL'
 
     this._manualItem = part
-    this.currentItem?.setCurrent()
   }
 
   public noLift(): void {
@@ -222,20 +222,10 @@ export class PartsStore {
 
   public run = () => {
     this._mode = 'RUN'
-    this.items.forEach(({ resetReadyCurrentState }) => resetReadyCurrentState())
-
-    if (this.currentItem) {
-      this.currentItem.setCurrent()
-    }
-
-    if (this.readyItem) {
-      this.readyItem.setReady()
-    }
   }
 
   public stop = () => {
     this._mode = 'IDLE'
     this._manualItem = null
-    this.items.forEach(({ resetReadyCurrentState }) => resetReadyCurrentState())
   }
 }

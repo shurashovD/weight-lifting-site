@@ -1,18 +1,17 @@
-import { action, makeAutoObservable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { v4 as uuidv4 } from 'uuid'
 
 import { NoteIndexedDBService } from '.'
 import { scope } from './../scope'
 import { Attempt } from './Attempt'
 import { AddNotePayload } from './types'
+import { PartsStore } from '../../stores'
 
 export class Note {
   public id: string | number
   public name: string
   public number: number
   public jerk: [Attempt, Attempt, Attempt]
-  public isCurrent = false
-  public isReady = false
   public snatch: [Attempt, Attempt, Attempt]
   public isWoomen: boolean
   public weight: number | null
@@ -20,20 +19,22 @@ export class Note {
   public teams: string[]
 
   private readonly _idbService: NoteIndexedDBService = scope.getService('noteIDbService')
+  private _store: PartsStore
 
-  constructor(data: AddNotePayload) {
+  constructor(data: AddNotePayload, store: PartsStore) {
     const { id, name, number } = data
+    this._store = store
     this.id = id || uuidv4()
     this.name = name
     this.number = number
     const emptyAtt = { bets: [], status: 'PENDING' }
     const jerk = Array(3)
       .fill(true)
-      .map((_, index) => new Attempt(data.jerk[index] || emptyAtt, this)) as Note['jerk']
+      .map((_, index) => new Attempt(data.jerk[index] || emptyAtt, this, index + 3)) as Note['jerk']
 
     const snatch = Array(3)
       .fill(true)
-      .map((_, index) => new Attempt(data.snatch[index] || emptyAtt, this)) as Note['snatch']
+      .map((_, index) => new Attempt(data.snatch[index] || emptyAtt, this, index)) as Note['snatch']
 
     this.jerk = jerk
     this.snatch = snatch
@@ -126,6 +127,14 @@ export class Note {
     return null
   }
 
+  get isCurrent() {
+    return this._store.currentItem?.id === this.id
+  }
+
+  get isReady() {
+    return this._store.readyItem?.id === this.id
+  }
+
   public onChange = () => {
     this._idbService.update(this)
   }
@@ -172,17 +181,4 @@ export class Note {
     const exercise = this.snatchIsFinished ? this.jerk : this.snatch
     action(exercise)
   }
-
-  public setCurrent = action(() => {
-    this.isCurrent = true
-  })
-
-  public setReady = action(() => {
-    this.isReady = true
-  })
-
-  public resetReadyCurrentState = action(() => {
-    this.isCurrent = false
-    this.isReady = false
-  })
 }

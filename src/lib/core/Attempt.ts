@@ -4,11 +4,12 @@ import { Note } from '.'
 import { AddAttPayload, AttStatus } from './types'
 
 export class Attempt {
+  private readonly _index: number
   private readonly _parentNote: Note
   bets: number[] = []
   status: AttStatus = 'PENDING'
 
-  constructor(payload: AddAttPayload, parentNote: Note) {
+  constructor(payload: AddAttPayload, parentNote: Note, index: number) {
     this.bets = payload.bets
       .filter(item => ['string', 'number'].includes(typeof item) && !isNaN(+item!))
       .map(Number)
@@ -17,8 +18,14 @@ export class Attempt {
       this.status = 'WRONGED'
     }
     this._parentNote = parentNote
+    this._index = index
 
     makeAutoObservable(this)
+  }
+
+  get isCurrent() {
+    const shift = this._parentNote.snatchIsFinished ? 3 : 0
+    return this._parentNote.currAttIndex + shift === this._index && this._parentNote.isCurrent
   }
 
   get isSucceded() {

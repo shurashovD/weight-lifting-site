@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { ThemeProvider } from '@mui/material'
 
-import { BottomMenu } from './BottomMenu'
+import { BottomMenu } from './bottom-menu/BottomMenu'
 import { Context } from './context'
 import { ItemDrawer } from './ItemDrawer'
 import { PartsList } from './parts-list/PartsList'

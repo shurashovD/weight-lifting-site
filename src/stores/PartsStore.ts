@@ -35,7 +35,7 @@ export class PartsStore {
 
     this._indexedDBService = indexedDBService
 
-    makeAutoObservable(this)
+    makeAutoObservable(this, {}, { autoBind: true })
 
     this._fetchFromIndexedDB()
   }

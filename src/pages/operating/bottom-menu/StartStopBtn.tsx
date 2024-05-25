@@ -16,15 +16,17 @@ export const StartStopBtn: FC<Props> = ({ disabled, isRunning, onStart, onStop }
 
   return (
     <Tooltip title={tooltipTitle}>
-      <Button
-        disabled={disabled}
-        onClick={action}
-        color="primary"
-        variant="outlined"
-        sx={{ minWidth: '120px' }}
-      >
-        {title}
-      </Button>
+      <span>
+        <Button
+          disabled={disabled}
+          onClick={action}
+          color="primary"
+          variant="outlined"
+          sx={{ minWidth: '120px' }}
+        >
+          {title}
+        </Button>
+      </span>
     </Tooltip>
   )
 }

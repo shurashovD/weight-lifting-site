@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 
 import { ThemeProvider } from '@mui/material'
 
+import { BottomMenu } from './BottomMenu'
 import { Context } from './context'
 import { ItemDrawer } from './ItemDrawer'
 import { PartsList } from './parts-list/PartsList'
@@ -18,6 +19,7 @@ export const OperatingPage = () => {
       <Context.Provider value={{ store }}>
         <ItemDrawer />
         <PartsList />
+        <BottomMenu />
       </Context.Provider>
     </ThemeProvider>
   )

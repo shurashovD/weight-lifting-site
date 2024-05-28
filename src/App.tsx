@@ -1,13 +1,12 @@
-/* eslint-disable import/order */
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { SnackbarProvider } from 'notistack'
 import { BrowserRouter } from 'react-router-dom'
+import { YMInitializer } from 'react-yandex-metrika'
 
 import { Router } from './lib/Router'
 import { lightTheme } from './lib/thems'
 
 import './App.css'
-import { YMInitializer } from 'react-yandex-metrika'
 
 function App() {
   return (

@@ -22,7 +22,7 @@ export const StartStopBtn: FC<Props> = ({ disabled, isRunning, onStart, onStop }
           onClick={action}
           color="primary"
           variant="outlined"
-          sx={{ minWidth: '120px' }}
+          sx={{ minWidth: '110px' }}
         >
           {title}
         </Button>
